@@ -72,7 +72,7 @@ contract Whoami {
 
         identities.push(ownerIdentity[msg.sender]);
 
-        NewIdentity(owner, ownerIdentity[msg.sender].created);
+        NewIdentity(msg.sender, ownerIdentity[msg.sender].created);
     }
 
     // Creating documents have a bounty attached to the which is used to pay

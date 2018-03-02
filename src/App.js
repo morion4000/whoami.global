@@ -9,9 +9,12 @@ import './App.css'
 
 var accounts = [];
 var web3;
+var whoamiInstance;
+var ipfs;
+
 const contract = require('truffle-contract')
+const IPFS = require('ipfs-mini');
 const whoami = contract(WhoamiContract)
-var whoamiInstance
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +27,7 @@ class App extends Component {
     }
 
     this.createIdentity = this.createIdentity.bind(this);
+    this.createAttribute = this.createAttribute.bind(this);
     this.createDocument = this.createDocument.bind(this);
   }
 
@@ -34,10 +38,25 @@ class App extends Component {
     })
   }
 
-  createDocument(e) {
+  createAttribute(e) {
     whoamiInstance.createDocument('name', 'Ionut Moraru', {from: this.state.accounts[0]})
     .then((result) => {
-      console.log(result)
+      console.log(result);
+    });
+  }
+
+  createDocument(e) {
+    const _this = this;
+
+    ipfs.add('Ionut Moraru', (err, hash) => {
+      console.log(err, hash);
+
+      whoamiInstance.createDocument('ipfs', hash, {
+        from: _this.state.accounts[0]
+      })
+      .then((result) => {
+        console.log(result);
+      })
     })
   }
 
@@ -65,6 +84,12 @@ class App extends Component {
       this.setState({
         accounts: _accounts
       })
+    });
+
+    ipfs = new IPFS({
+      host: 'ipfs.infura.io',
+      port: 5001,
+      protocol: 'https'
     });
 
     whoami.deployed().then((instance) => {
@@ -110,6 +135,8 @@ class App extends Component {
               <p>Identity created: <b>{this.state.identity}</b></p>
 
               <button onClick={this.createIdentity}>Create Identity</button>
+              |
+              <button onClick={this.createAttribute}>Create Attribute</button>
               |
               <button onClick={this.createDocument}>Create Document</button>
 
