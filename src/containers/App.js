@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
-import WhoamiContract from '../build/contracts/Whoami.json'
-import getWeb3 from './utils/getWeb3'
+import React, { Component } from 'react';
+import WhoamiContract from '../../build/contracts/Whoami.json';
+import getWeb3 from './../utils/getWeb3';
 
-import './css/oswald.css'
-import './css/open-sans.css'
-import './css/pure-min.css'
-import './App.css'
+import './../css/oswald.css';
+import './../css/open-sans.css';
+import './../css/pure-min.css';
+import './App.css';
 
 var accounts = [];
 var web3;
 var whoamiInstance;
 var ipfs;
 
-const contract = require('truffle-contract')
+const contract = require('truffle-contract');
 const IPFS = require('ipfs-mini');
-const whoami = contract(WhoamiContract)
+const whoami = contract(WhoamiContract);
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       identity: null,
       documents: [],
       accounts: []
-    }
+    };
 
     this.createIdentity = this.createIdentity.bind(this);
     this.createAttribute = this.createAttribute.bind(this);
@@ -34,8 +34,8 @@ class App extends Component {
   createIdentity(e) {
     whoamiInstance.createIdentity({from: this.state.accounts[0]})
     .then((result) => {
-      console.log(result)
-    })
+      console.log(result);
+    });
   }
 
   createAttribute(e) {
@@ -56,8 +56,8 @@ class App extends Component {
       })
       .then((result) => {
         console.log(result);
-      })
-    })
+      });
+    });
   }
 
   componentWillMount() {
@@ -66,24 +66,24 @@ class App extends Component {
 
     getWeb3
     .then(results => {
-      web3 = results.web3
+      web3 = results.web3;
 
       // Instantiate contract once web3 provided.
-      this.instantiateContract()
+      this.instantiateContract();
     })
     .catch(() => {
-      console.log('Error finding web3.')
-    })
+      console.log('Error finding web3.');
+    });
   }
 
   instantiateContract() {
-    whoami.setProvider(web3.currentProvider)
+    whoami.setProvider(web3.currentProvider);
 
     // Get accounts.
     web3.eth.getAccounts((error, _accounts) => {
       this.setState({
         accounts: _accounts
-      })
+      });
     });
 
     ipfs = new IPFS({
@@ -93,28 +93,28 @@ class App extends Component {
     });
 
     whoami.deployed().then((instance) => {
-      whoamiInstance = instance
+      whoamiInstance = instance;
 
-      return whoamiInstance.getOwnerIdentity.call({from:this.state.accounts[0]})
+      return whoamiInstance.getOwnerIdentity.call({from:this.state.accounts[0]});
     }).then((result) => {
-      console.log(result)
+      console.log(result);
 
       if (result.length > 0) {
         const created = result[1];
 
         this.setState({
           identity: new Date(Number(created)*1000).toString()
-        })
+        });
       }
 
-      return whoamiInstance.getDocumentsByOwner.call(this.state.accounts[0])
+      return whoamiInstance.getDocumentsByOwner.call(this.state.accounts[0]);
     }).then((result) => {
-      console.log(result)
+      console.log(result);
 
       this.setState({
         documents: result
-      })
-    })
+      });
+    });
   }
 
   render() {
