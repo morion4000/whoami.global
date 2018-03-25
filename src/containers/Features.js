@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import Menu from './Menu.js';
 import Header from './Header.js';
 import FooterSmall from './FooterSmall.js';
-import IntroductionFragment from './IntroductionFragment.js';
-import WorkflowFragment from './WorkflowFragment.js';
-import AnnouncementFragment from './AnnouncementFragment.js';
 
-import './Home.css';
+//import './Features.css';
 
-class Home extends Component {
+class Features extends Component {
   constructor(props) {
     super(props);
   }
@@ -19,9 +16,7 @@ class Home extends Component {
         <Menu/>
         <div className="main-container">
           <Header/>
-          <AnnouncementFragment/>
-          <IntroductionFragment/>
-          <WorkflowFragment/>
+          features
         </div>
         <FooterSmall/>
       </div>
@@ -29,4 +24,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Features

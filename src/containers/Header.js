@@ -10,10 +10,9 @@ class Header extends Component {
             <div className="col-12 col-md-6 col-lg-5 section-intro">
               <h1 className="display-3">Identity on Blockchain</h1>
               <span className="lead">
-                Pay to get identity verified, get payed to get your data used.
+                Pay to get identity verified, get payed when its used.
               </span>
             </div>
-            {/*end of col*/}
             <div className="col-12 col-md-6 col-lg-5">
               <div className="card">
                 <div className="card-body">

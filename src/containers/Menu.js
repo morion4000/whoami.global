@@ -19,29 +19,22 @@ class Menu extends Component {
                     <a href="index.html" className="nav-link">Overview</a>
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown">Pages</a>
+                    <a className="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown">Features</a>
                     <div className="dropdown-menu" aria-labelledby="pagesDropdown">
                       <a className="dropdown-item" href="pages-landing.html">
-                        <span className="h6 mb-0">Landing Pages</span>
-                        <p className="text-small text-muted">Showcase your product in style</p>
-                      </a>
-                      <div className="dropdown-divider" />
-                      <a className="dropdown-item" href="pages-app.html">
-                        <span className="h6 mb-0">App Pages</span>
-                        <p className="text-small text-muted">Build detailed, functional web apps</p>
+                        <span className="h6 mb-0">KYC</span>
+                        <p className="text-small text-muted">Know your customer verification</p>
                       </a>
                       <div className="dropdown-divider" />
                       <a className="dropdown-item" href="pages-inner.html">
-                        <span className="h6 mb-0">Inner Pages</span>
-                        <p className="text-small text-muted">Complete your online presence</p>
+                        <span className="h6 mb-0">Proofs</span>
+                        <p className="text-small text-muted">Proove that you are who you say you are</p>
                       </a>
-                    </div>
-                  </li>
-                  <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="componentsDropdown" role="button" data-toggle="dropdown">Components</a>
-                    <div className="dropdown-menu" aria-labelledby="componentsDropdown">
-                      <a className="dropdown-item" href="components-bootstrap.html">Bootstrap</a>
-                      <a className="dropdown-item" href="components-wingman.html">Whoami</a>
+                      <div className="dropdown-divider" />
+                      <a className="dropdown-item" href="pages-app.html">
+                        <span className="h6 mb-0">Signing</span>
+                        <p className="text-small text-muted">Sign messages with your private key</p>
+                      </a>
                     </div>
                   </li>
                 </ul>
