@@ -40,15 +40,12 @@ class Menu extends Component {
                 </ul>
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a href="#">Sign up</a>
-                    <span>&nbsp;or&nbsp;</span><a href="#">Sign in</a>
+                    <a href="#">No Account Detected</a>
                   </li>
                 </ul>
               </div>
-              {/*end nav collapse*/}
             </nav>
           </div>
-          {/*end of container*/}
         </div>
       </div>
     );

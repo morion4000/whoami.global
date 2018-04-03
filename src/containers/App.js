@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import Home from './Home.js';
 import About from './About.js';
+import Wizard from './Wizard.js';
 import Features from './Features.js';
 import NotFound from './NotFound.js';
 
@@ -18,6 +19,7 @@ class App extends Component {
         <Route path='/' component={Home} />
         <Route path='/about' component={About} />
         <Route path='/features' component={Features} />
+        <Route path='/wizard' component={Wizard} />
         <Route path='*' component={NotFound} />
       </Router>
     );
