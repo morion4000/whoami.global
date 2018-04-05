@@ -11,9 +11,8 @@ class ClaimIdentity extends Component {
         <div className="card-body">
           <form action="/wizard" method="GET">
             <div className="form-group">
-              <label htmlFor="alias">Alias</label>
-              <input className="form-control form-control-lg" id="alias" aria-describedby="usernameHelp" placeholder="Pick an alias" type="text" name="alias" />
-              <small id="usernameHelp" className="form-text">It is like an username</small>
+              <label htmlFor="username">Username</label>
+              <input className="form-control form-control-lg" id="username" aria-describedby="usernameHelp" placeholder="Pick an username" type="text" name="username" />
             </div>
             {/*
             <div className="mb-3">

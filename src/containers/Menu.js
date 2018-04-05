@@ -16,22 +16,22 @@ class Menu extends Component {
               <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a href="index.html" className="nav-link">Overview</a>
+                    <a href="/features" className="nav-link">Overview</a>
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown">Features</a>
                     <div className="dropdown-menu" aria-labelledby="pagesDropdown">
-                      <a className="dropdown-item" href="pages-landing.html">
+                      <a className="dropdown-item" href="/features/kyc">
                         <span className="h6 mb-0">KYC</span>
                         <p className="text-small text-muted">Know your customer verification</p>
                       </a>
                       <div className="dropdown-divider" />
-                      <a className="dropdown-item" href="pages-inner.html">
+                      <a className="dropdown-item" href="/features/proofs">
                         <span className="h6 mb-0">Proofs</span>
                         <p className="text-small text-muted">Proove that you are who you say you are</p>
                       </a>
                       <div className="dropdown-divider" />
-                      <a className="dropdown-item" href="pages-app.html">
+                      <a className="dropdown-item" href="/features/signing">
                         <span className="h6 mb-0">Signing</span>
                         <p className="text-small text-muted">Sign messages with your private key</p>
                       </a>
@@ -40,7 +40,7 @@ class Menu extends Component {
                 </ul>
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a href="#">No Account Detected</a>
+                    <a href="/profile">No Ethereum Account Detected</a>
                   </li>
                 </ul>
               </div>

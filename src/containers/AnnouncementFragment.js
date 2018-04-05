@@ -11,9 +11,9 @@ class AnnouncementFragment extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <i className="mr-1 icon-cake" />
-              <span className="mr-2">Use this handy announcmenet bar to talk about new features</span>
-              <a href="#" className="text-white">View changelog ›</a>
+              <i className="mr-1 icon-warning" />
+              <span className="mr-2">The application is in alpha and running on the Ethereum testnet (Rinkeby).</span>
+              <a href="/changelog" className="text-white">View changelog ›</a>
             </div>
           </div>
         </div>

@@ -20,13 +20,13 @@ class WorkflowFragment extends Component {
             <div className="col-md-5 col-7 mb-4">
               <div className="tab-content">
                 <div className="tab-pane fade show active" id="content-1" role="tabpanel" arialabelledby="content-1-tab">
-                  <img alt="Image" className="img-fluid w-100" src="assets/img/graphic-desktop.svg" />
+                  <img alt="Image" className="img-fluid w-100" src="assets/img/if_50_2529962.svg" />
                 </div>
                 <div className="tab-pane fade" id="content-2" role="tabpanel" arialabelledby="content-2-tab">
-                  <img alt="Image" className="img-fluid w-100" src="assets/img/graphic-fingerprint.svg" />
+                  <img alt="Image" className="img-fluid w-100" src="assets/img/if_45_2529966.svg" />
                 </div>
                 <div className="tab-pane fade" id="content-3" role="tabpanel" arialabelledby="content-3-tab">
-                  <img alt="Image" className="img-fluid w-100" src="assets/img/graphic-envelope.svg" />
+                  <img alt="Image" className="img-fluid w-100" src="assets/img/if_43_2529969.svg" />
                 </div>
               </div>
             </div>

@@ -16,6 +16,7 @@ class IntroductionFragment extends Component {
               <span className="lead">Use your identity to gain access to a multitude of services</span>
             </div>
           </div>
+          {/*
           <div className="row justify-content-center">
             <div className="col-md-8 col-sm-10">
               <div className="video-cover rounded">
@@ -29,6 +30,7 @@ class IntroductionFragment extends Component {
               </div>
             </div>
           </div>
+          */}
           <div className="row justify-content-center text-center section-outro">
             <div className="col-lg-4 col-md-5">
               <h6>Verify identity only once,</h6>
