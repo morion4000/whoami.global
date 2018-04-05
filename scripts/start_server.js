@@ -4,8 +4,8 @@ const app = express();
 
 app.use(express.static('./build_webpack'));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './build_webpack', 'index.html'));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '..', 'build_webpack', 'index.html'));
 });
 
-app.listen(80);
+app.listen(8000);
