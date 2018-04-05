@@ -8,4 +8,4 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '..', 'build_webpack', 'index.html'));
 });
 
-app.listen(8000);
+app.listen(80);
