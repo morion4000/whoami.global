@@ -1,6 +1,47 @@
 import React, { Component } from 'react';
+import getWeb3 from './../utils/getWeb3';
+
+function DisplayAccount(props) {
+  const account = props.accounts.length ? props.accounts[0] : null;
+
+  if (account) {
+    const short_account = account.substr(0, 5) + '...' + account.substr(-5, 5);
+
+    return (
+      <a href="/profile" title={account}>{short_account}</a>
+    );
+  } else {
+    return (
+      <a href="#">No Ethereum Account</a>
+    );
+  }
+}
 
 class Menu extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      web3: null,
+      accounts: []
+    };
+  }
+
+  componentWillMount() {
+    getWeb3
+      .then(results => {
+        this.setState({
+          web3: results.web3
+        });
+
+        this.state.web3.eth.getAccounts((error, accounts) => {
+          this.setState({
+            accounts: accounts
+          });
+        });
+      });
+  }
+
   render() {
     return (
       <div className="nav-container">
@@ -40,7 +81,7 @@ class Menu extends Component {
                 </ul>
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a href="/profile">No Ethereum Account Detected</a>
+                    <DisplayAccount accounts={this.state.accounts} />
                   </li>
                 </ul>
               </div>
@@ -52,4 +93,4 @@ class Menu extends Component {
   }
 }
 
-export default Menu
+export default Menu;

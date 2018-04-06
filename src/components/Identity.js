@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
 import getWeb3 from './../utils/getWeb3';
 
-class Identity extends Component {
-  constructor(props) {
-    super(props);
-
+class Identity {
+  constructor(web3) {
     this.state = {
       web3: null
     };

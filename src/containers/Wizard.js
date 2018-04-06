@@ -52,19 +52,21 @@ class Wizard extends Component {
 
     console.log(this.state.accounts[0]);
 
-    this.state.whoamiInstance.createIdentity({
+    var batch = this.state.web3.createBatch();
+
+    batch.add(this.state.whoamiInstance.createIdentity({
       from: this.state.accounts[0]
-    }).then((result) => {
-      return this.state.whoamiInstance.createDocument('username', this.state.username, {
-        from: this.state.accounts[0]
-      });
-    }).then((result) => {
-      return this.state.whoamiInstance.createDocument('public', this.state.public, {
-        from: this.state.accounts[0]
-      });
-    }).then((result) => {
-      alert('created');
-    });
+    }));
+
+    batch.add(this.state.whoamiInstance.createDocument('username', this.state.username, {
+      from: this.state.accounts[0]
+    }));
+
+    batch.add(this.state.whoamiInstance.createDocument('public', this.state.public, {
+      from: this.state.accounts[0]
+    }));
+
+    batch.execute();
   }
 
   render() {
@@ -181,4 +183,4 @@ class Wizard extends Component {
   }
 }
 
-export default Wizard
+export default Wizard;

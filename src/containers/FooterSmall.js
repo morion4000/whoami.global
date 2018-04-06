@@ -15,13 +15,10 @@ class FooterSmall extends Component {
                  </a>
                </li>
                <li className="list-inline-item">
-                 <a href="#">Overview</a>
+                 <a href="/overview">Overview</a>
                </li>
                <li className="list-inline-item">
-                 <a href="#">Documentation</a>
-               </li>
-               <li className="list-inline-item">
-                 <a href="#">Changelog</a>
+                 <a href="/changelog">Changelog</a>
                </li>
              </ul>
            </div>
@@ -38,7 +35,7 @@ class FooterSmall extends Component {
          </nav>
          <div className="row">
            <div className="col">
-             <small>© 2018 Whoami</small>
+             <small>© 2018 Whoami.global</small>
            </div>
          </div>
        </div>

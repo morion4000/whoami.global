@@ -12,7 +12,7 @@ class AnnouncementFragment extends Component {
           <div className="row">
             <div className="col">
               <i className="mr-1 icon-warning" />
-              <span className="mr-2">The application is in alpha and running on the Ethereum testnet (Rinkeby).</span>
+              <span className="mr-2">The application is in alpha and running on the Ethereum testnet (Ropsten).</span>
               <a href="/changelog" className="text-white">View changelog ›</a>
             </div>
           </div>
