@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Menu from './Menu.js';
-import Header from './Header.js';
-import Footer from './Footer.js';
-//import './About.css';
+
+import Menu from '../containers/Menu.js';
+import Header from '../containers/Header.js';
+import Footer from '../containers/Footer.js';
+
 
 class About extends Component {
   constructor(props) {

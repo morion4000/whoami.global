@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Menu from './Menu.js';
-import SubHeader from './SubHeader.js';
-import FooterSmall from './FooterSmall.js';
-import Breadcrumbs from './Breadcrumbs.js';
+
+import Menu from '../containers/Menu.js';
+import SubHeader from '../containers/SubHeader.js';
+import FooterSmall from '../containers/FooterSmall.js';
+import Breadcrumbs from '../containers/Breadcrumbs.js';
+
 
 class TestNet extends Component {
   constructor(props) {

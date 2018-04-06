@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
-import Home from './Home.js';
-import About from './About.js';
-import Wizard from './Wizard.js';
-import Features from './Features.js';
-import NotFound from './NotFound.js';
-import TestNet from './TestNet.js';
 
-import './App.css';
+import Home from './pages/Home.js';
+import About from './pages/About.js';
+import Wizard from './pages/Wizard.js';
+import Features from './pages/Features.js';
+import NotFound from './pages/NotFound.js';
+import TestNet from './pages/TestNet.js';
+
+import './css/App.css';
 
 class App extends Component {
   constructor(props) {

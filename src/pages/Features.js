@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Menu from './Menu.js';
-import Header from './Header.js';
-import FooterSmall from './FooterSmall.js';
 
-//import './Features.css';
+import Menu from '../containers/Menu.js';
+import Header from '../containers/Header.js';
+import FooterSmall from '../containers/FooterSmall.js';
+
 
 class Features extends Component {
   constructor(props) {
@@ -24,4 +24,4 @@ class Features extends Component {
   }
 }
 
-export default Features
+export default Features;

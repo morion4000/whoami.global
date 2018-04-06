@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import contract from 'truffle-contract';
 
 import getWeb3 from './../utils/getWeb3';
-import AnnouncementFragment from './AnnouncementFragment.js';
+import AnnouncementFragment from '../containers/AnnouncementFragment.js';
 import Metamask from '../components/Metamask.js';
 import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
 import DocumentFactoryContract from '../../build/contracts/DocumentFactory.json';
