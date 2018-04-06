@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Web3 from '../components/Web3.js';
+
+
 class FooterSmall extends Component {
   render() {
     return (
@@ -30,6 +33,9 @@ class FooterSmall extends Component {
                <li className="list-inline-item">
                  <a href="#"><i className="socicon-facebook" /></a>
                </li>
+               <li className="list-inline-item">
+                  <Web3 />
+               </li>
              </ul>
            </div>
          </nav>
@@ -44,4 +50,4 @@ class FooterSmall extends Component {
  }
 }
 
-export default FooterSmall
+export default FooterSmall;

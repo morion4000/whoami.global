@@ -21,7 +21,7 @@ class Home extends Component {
         <Menu/>
         <div className="main-container">
           <Header/>
-          <AnnouncementFragment icon="icon-warning" text="The application is in alpha and running on the Ethereum testnet (Rinkeby)." linkText="View changelog ›" linkAddress="/changelog" />
+          <AnnouncementFragment icon="icon-info" text="The application is in alpha and running on the Ethereum testnet (Rinkeby)." linkText="View changelog ›" linkAddress="/changelog" />
           <IntroductionFragment/>
           <WorkflowFragment/>
         </div>

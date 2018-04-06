@@ -44,4 +44,4 @@ class IntroductionFragment extends Component {
   }
 }
 
-export default IntroductionFragment
+export default IntroductionFragment;

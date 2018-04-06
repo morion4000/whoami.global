@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import Web3 from '../components/Web3.js';
+
+
 class Footer extends Component {
   render() {
     return (
@@ -9,10 +12,9 @@ class Footer extends Component {
            <div className="col-12 col-md-3">
              <img alt="Image" src="assets/img/logo-white.svg" className="mb-4" />
              <p className="text-muted">
-               © 2018 Whoami
+               © 2018 Whoami.global
              </p>
            </div>
-           {/*end of col*/}
            <div className="col-12 col-md-9">
              <span className="h5">A robust suite of styled components for Bootstrap 4</span>
              <div className="row no-gutters">
@@ -33,7 +35,6 @@ class Footer extends Component {
                    </li>
                  </ul>
                </div>
-               {/*end of col*/}
                <div className="col-6 col-lg-3">
                  <h6>Platform</h6>
                  <ul className="list-unstyled">
@@ -72,7 +73,6 @@ class Footer extends Component {
                    </li>
                  </ul>
                </div>
-               {/*end of col*/}
                <div className="col-6 col-lg-3">
                  <h6>Company</h6>
                  <ul className="list-unstyled">

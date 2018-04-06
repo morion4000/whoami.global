@@ -4,6 +4,7 @@ import contract from 'truffle-contract';
 import getWeb3 from './../utils/getWeb3';
 import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
 
+
 function DisplayAccount(props) {
   const account = props.accounts.length ? props.accounts[0] : null;
   const username = props.username;
@@ -20,7 +21,7 @@ function DisplayAccount(props) {
     );
   } else {
     return (
-      <a href="#">No Ethereum Account</a>
+      <a href="/testnet">No Ethereum Account</a>
     );
   }
 }
@@ -30,47 +31,41 @@ class Menu extends Component {
     super(props);
 
     this.state = {
-      web3: null,
       accounts: [],
       username: null
     };
   }
 
   componentWillMount() {
+    getWeb3.then(this.ready.bind(this));
+  }
+
+  ready() {
     const identityFactory = contract(IdentityFactoryContract);
 
-    getWeb3
-      .then(results => {
-        this.setState({
-          web3: results.web3
-        });
+    identityFactory.setProvider(window.web3.currentProvider);
 
-        identityFactory.setProvider(this.state.web3.currentProvider);
+    this.setState({
+      accounts: window.web3.eth.accounts
+    });
 
-        identityFactory.deployed().then((instance) => {
-          this.state.web3.eth.getAccounts((error, accounts) => {
-            this.setState({
-              accounts: accounts
-            });
+    identityFactory.deployed().then((instance) => {
+      instance.getOwnerIdentity.call({
+        from: this.state.accounts[0]
+      }).then((res, err) => {
+        if (err || !res.length) {
+          return;
+        }
 
-            instance.getOwnerIdentity.call({
-              from: accounts[0]
-            }).then((res, err) => {
-              if (err || !res.length) {
-                return;
-              }
+        const username = res[0];
 
-              const username = res[0];
-
-              if (username !== '') {
-                this.setState({
-                  username: username
-                });
-              }
-            })
+        if (username !== '') {
+          this.setState({
+            username: username
           });
-        });
-      });
+        }
+      })
+    });
   }
 
   render() {

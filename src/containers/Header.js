@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import ClaimIdentity from './ClaimIdentity.js';
+
 
 class Header extends Component {
   render() {

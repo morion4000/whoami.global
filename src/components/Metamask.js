@@ -24,25 +24,18 @@ class Metamask extends Component {
     super(props);
 
     this.state = {
-      accounts: [],
-      web3: null,
       installed: false
     };
   }
 
   componentWillMount() {
-    getWeb3
-      .then(results => {
-        const web3 = results.web3;
+    getWeb3.then(this.ready.bind(this));
+  }
 
-        this.setState({
-          web3: web3,
-          installed: web3.currentProvider.isMetaMask
-        });
-      })
-      .catch(() => {
-        console.error('Error finding web3.');
-      });
+  ready() {
+    this.setState({
+      installed: window.web3.currentProvider.isMetaMask
+    });
   }
 
   render() {

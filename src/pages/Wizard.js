@@ -3,9 +3,33 @@ import contract from 'truffle-contract';
 
 import getWeb3 from './../utils/getWeb3';
 import AnnouncementFragment from '../containers/AnnouncementFragment.js';
+import Web3 from '../components/Web3.js';
 import Metamask from '../components/Metamask.js';
 import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
 import DocumentFactoryContract from '../../build/contracts/DocumentFactory.json';
+
+
+function ProviderWarningMessage(props) {
+  const network = props.network;
+  const metamask = props.metamask;
+
+  // TODO: Import from web3 functions to handle networks
+  if (metamask) {
+    if (network !== '4') {
+      return (
+        <AnnouncementFragment icon="icon-warning" text="Please point Metamask to Rinkeby testnet." linkText="Read More ›" linkAddress="/testnet" />
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
+  } else {
+    return (
+      <AnnouncementFragment icon="icon-warning" text="Please install Metamask." linkText="Read More ›" linkAddress="/testnet" />
+    );
+  }
+}
 
 
 class Wizard extends Component {
@@ -15,57 +39,50 @@ class Wizard extends Component {
     this.state = {
       username: this.props.location.query.username || null,
       public: this.props.location.query.public || false,
-      web3: null,
       identityFactoryInstance: null,
       documentFactoryInstance: null,
-      accounts: []
+      accounts: [],
+      metamask: false,
+      network: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
+    getWeb3.then(this.ready.bind(this));
+  }
+
+  ready() {
     const identityFactory = contract(IdentityFactoryContract);
     const documentFactory = contract(DocumentFactoryContract);
 
-    getWeb3
-      .then(results => {
-        this.setState({
-          web3: results.web3,
-        });
+    identityFactory.setProvider(window.web3.currentProvider);
+    documentFactory.setProvider(window.web3.currentProvider);
 
-        identityFactory.setProvider(this.state.web3.currentProvider);
-        documentFactory.setProvider(this.state.web3.currentProvider);
-
-        identityFactory.deployed().then((instance) => {
-          this.setState({
-            identityFactoryInstance: instance
-          });
-        });
-
-        documentFactory.deployed().then((instance) => {
-          //window.documentFactory = instance;
-
-          this.setState({
-            documentFactoryInstance: instance
-          });
-        });
-
-        this.state.web3.eth.getAccounts((error, accounts) => {
-          this.setState({
-            accounts: accounts
-          });
-        });
-      })
-      .catch(() => {
-        console.error('Error finding web3.');
+    identityFactory.deployed().then((instance) => {
+      this.setState({
+        identityFactoryInstance: instance
       });
+    });
+
+    documentFactory.deployed().then((instance) => {
+      this.setState({
+        documentFactoryInstance: instance
+      });
+    });
+
+    this.setState({
+      metamask: window.web3.currentProvider.isMetaMask,
+      network: window.web3.version.network,
+      accounts: window.web3.eth.accounts
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    var batch = this.state.web3.createBatch();
+    var batch = window.web3.createBatch();
 
     batch.add(this.state.identityFactoryInstance.createIdentity(this.state.username, {
       from: this.state.accounts[0]
@@ -81,13 +98,14 @@ class Wizard extends Component {
   render() {
     return (
       <div>
-        <AnnouncementFragment icon="icon-warning" text="Please switch Metamask to Rinkeby testnet." linkText="Read More ›" linkAddress="/testnet" />
+        <ProviderWarningMessage network={this.state.network} metamask={this.state.metamask} />
+
         <div className="main-container">
           <section className="space-sm">
             <div className="container">
               <div className="row mb-4">
                 <div className="col text-center">
-                  <a href="#">
+                  <a href="/">
                     <img alt="Image" src="assets/img/logo-gray.svg" />
                   </a>
                 </div>
@@ -183,6 +201,9 @@ class Wizard extends Component {
                     <span className="text-small">Changed your mind? <a href="/">Skip this</a>
                     </span>
                   </div>
+
+                  <Web3 />
+
                 </div>
               </div>
             </div>
