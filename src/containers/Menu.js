@@ -48,7 +48,7 @@ class Menu extends Component {
         <div className="bg-dark navbar-dark" data-sticky="top">
           <div className="container">
             <nav className="navbar navbar-expand-lg">
-              <a className="navbar-brand" href="index.html">
+              <a className="navbar-brand" href="/">
                 <img alt="Whoami" src="assets/img/logo-white.svg" />
               </a>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

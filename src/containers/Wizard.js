@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getWeb3 from './../utils/getWeb3';
+import AnnouncementFragment from './AnnouncementFragment.js';
 import Metamask from '../components/Metamask.js';
 import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
 import DocumentFactoryContract from '../../build/contracts/DocumentFactory.json';
@@ -84,6 +85,7 @@ class Wizard extends Component {
   render() {
     return (
       <div>
+        <AnnouncementFragment icon="icon-warning" text="Please switch Metamask to Rinkeby testnet." linkText="Read More ›" linkAddress="/testnet" />
         <div className="main-container">
           <section className="space-sm">
             <div className="container">

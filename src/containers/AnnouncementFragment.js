@@ -3,6 +3,13 @@ import React, { Component } from 'react';
 class AnnouncementFragment extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      icon: this.props.icon || 'icon-warning',
+      text: this.props.text || '',
+      linkText: this.props.linkText || null,
+      linkAddress: this.props.linkAddress || null,
+    };
   }
 
   render() {
@@ -11,9 +18,9 @@ class AnnouncementFragment extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <i className="mr-1 icon-warning" />
-              <span className="mr-2">The application is in alpha and running on the Ethereum testnet (Ropsten).</span>
-              <a href="/changelog" className="text-white">View changelog ›</a>
+              <i className={this.state.icon+' mr-1'} />
+              <span className="mr-2">{this.state.text}</span>
+              <a href={this.state.linkAddress} className="text-white">{this.state.linkText}</a>
             </div>
           </div>
         </div>
@@ -22,4 +29,4 @@ class AnnouncementFragment extends Component {
   }
 }
 
-export default AnnouncementFragment
+export default AnnouncementFragment;
