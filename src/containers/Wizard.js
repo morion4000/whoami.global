@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import getWeb3 from './../utils/getWeb3';
 import Metamask from '../components/Metamask.js';
-import WhoamiContract from '../../build/contracts/Whoami.json';
+import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
+import DocumentFactoryContract from '../../build/contracts/DocumentFactory.json';
 
 class Wizard extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Wizard extends Component {
       username: this.props.location.query.username || null,
       public: this.props.location.query.public || false,
       web3: null,
-      whoamiInstance: null,
+      identityFactoryInstance: null,
+      documentFactoryInstance: null,
       accounts: []
     };
 
@@ -26,13 +28,23 @@ class Wizard extends Component {
         });
 
         const contract = require('truffle-contract');
-        const whoami = contract(WhoamiContract);
+        const identityFactory = contract(IdentityFactoryContract);
+        const documentFactory = contract(DocumentFactoryContract);
 
-        whoami.setProvider(this.state.web3.currentProvider);
+        identityFactory.setProvider(this.state.web3.currentProvider);
+        documentFactory.setProvider(this.state.web3.currentProvider);
 
-        whoami.deployed().then((instance) => {
+        identityFactory.deployed().then((instance) => {
           this.setState({
-            whoamiInstance: instance
+            identityFactoryInstance: instance
+          });
+        });
+
+        documentFactory.deployed().then((instance) => {
+          //window.documentFactory = instance;
+
+          this.setState({
+            documentFactoryInstance: instance
           });
         });
 
@@ -54,15 +66,15 @@ class Wizard extends Component {
 
     var batch = this.state.web3.createBatch();
 
-    batch.add(this.state.whoamiInstance.createIdentity({
+    batch.add(this.state.identityFactoryInstance.createIdentity({
       from: this.state.accounts[0]
     }));
 
-    batch.add(this.state.whoamiInstance.createDocument('username', this.state.username, {
+    batch.add(this.state.documentFactoryInstance.createDocument('username', this.state.username, {
       from: this.state.accounts[0]
     }));
 
-    batch.add(this.state.whoamiInstance.createDocument('public', this.state.public, {
+    batch.add(this.state.documentFactoryInstance.createDocument('public', this.state.public, {
       from: this.state.accounts[0]
     }));
 
