@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import contract from 'truffle-contract';
+
 import getWeb3 from './../utils/getWeb3';
 import AnnouncementFragment from './AnnouncementFragment.js';
 import Metamask from '../components/Metamask.js';
 import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
 import DocumentFactoryContract from '../../build/contracts/DocumentFactory.json';
+
 
 class Wizard extends Component {
   constructor(props) {
@@ -22,15 +25,14 @@ class Wizard extends Component {
   }
 
   componentWillMount() {
+    const identityFactory = contract(IdentityFactoryContract);
+    const documentFactory = contract(DocumentFactoryContract);
+
     getWeb3
       .then(results => {
         this.setState({
           web3: results.web3,
         });
-
-        const contract = require('truffle-contract');
-        const identityFactory = contract(IdentityFactoryContract);
-        const documentFactory = contract(DocumentFactoryContract);
 
         identityFactory.setProvider(this.state.web3.currentProvider);
         documentFactory.setProvider(this.state.web3.currentProvider);
@@ -63,15 +65,9 @@ class Wizard extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    console.log(this.state.accounts[0]);
-
     var batch = this.state.web3.createBatch();
 
-    batch.add(this.state.identityFactoryInstance.createIdentity({
-      from: this.state.accounts[0]
-    }));
-
-    batch.add(this.state.documentFactoryInstance.createDocument('username', this.state.username, {
+    batch.add(this.state.identityFactoryInstance.createIdentity(this.state.username, {
       from: this.state.accounts[0]
     }));
 

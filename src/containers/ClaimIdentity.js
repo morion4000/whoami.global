@@ -31,4 +31,4 @@ class ClaimIdentity extends Component {
  }
 }
 
-export default ClaimIdentity
+export default ClaimIdentity;
