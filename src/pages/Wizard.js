@@ -3,11 +3,10 @@ import contract from 'truffle-contract';
 
 import getWeb3 from './../utils/getWeb3';
 import AnnouncementFragment from '../containers/AnnouncementFragment.js';
-import Web3 from '../components/Web3.js';
-import Metamask from '../components/Metamask.js';
-import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
-import DocumentFactoryContract from '../../build/contracts/DocumentFactory.json';
-
+import Web3 from '../containers/Web3.js';
+import Metamask from '../containers/Metamask.js';
+import IdentityFactory from '../components/IdentityFactory.js';
+import DocumentFactory from '../components/DocumentFactory.js';
 
 function ProviderWarningMessage(props) {
   const network = props.network;
@@ -17,7 +16,9 @@ function ProviderWarningMessage(props) {
   if (metamask) {
     if (network !== '4') {
       return (
-        <AnnouncementFragment icon="icon-warning" text="Please point Metamask to Rinkeby testnet." linkText="Read More ›" linkAddress="/testnet" />
+        <div>
+          <AnnouncementFragment icon="icon-warning" text="Please point Metamask to Rinkeby testnet." linkText="Read More ›" linkAddress="/testnet" />
+        </div>
       );
     } else {
       return (
@@ -54,28 +55,12 @@ class Wizard extends Component {
   }
 
   ready() {
-    const identityFactory = contract(IdentityFactoryContract);
-    const documentFactory = contract(DocumentFactoryContract);
-
-    identityFactory.setProvider(window.web3.currentProvider);
-    documentFactory.setProvider(window.web3.currentProvider);
-
-    identityFactory.deployed().then((instance) => {
-      this.setState({
-        identityFactoryInstance: instance
-      });
-    });
-
-    documentFactory.deployed().then((instance) => {
-      this.setState({
-        documentFactoryInstance: instance
-      });
-    });
-
     this.setState({
       metamask: window.web3.currentProvider.isMetaMask,
       network: window.web3.version.network,
-      accounts: window.web3.eth.accounts
+      accounts: window.web3.eth.accounts,
+      identityFactoryInstance: new IdentityFactory(window.web3),
+      documentFactoryInstance: new DocumentFactory(window.web3)
     });
   }
 
@@ -84,13 +69,8 @@ class Wizard extends Component {
 
     var batch = window.web3.createBatch();
 
-    batch.add(this.state.identityFactoryInstance.createIdentity(this.state.username, {
-      from: this.state.accounts[0]
-    }));
-
-    batch.add(this.state.documentFactoryInstance.createDocument('public', this.state.public, {
-      from: this.state.accounts[0]
-    }));
+    batch.add(this.state.identityFactoryInstance.create(this.state.username));
+    batch.add(this.state.documentFactoryInstance.create('public', this.state.public));
 
     batch.execute();
   }

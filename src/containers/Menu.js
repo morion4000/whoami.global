@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import contract from 'truffle-contract';
 
 import getWeb3 from './../utils/getWeb3';
-import IdentityFactoryContract from '../../build/contracts/IdentityFactory.json';
+import IdentityFactory from '../components/IdentityFactory.js';
 
 
 function DisplayAccount(props) {
@@ -32,7 +31,8 @@ class Menu extends Component {
 
     this.state = {
       accounts: [],
-      username: null
+      username: null,
+      identityFactoryInstance: null,
     };
   }
 
@@ -41,31 +41,24 @@ class Menu extends Component {
   }
 
   ready() {
-    const identityFactory = contract(IdentityFactoryContract);
-
-    identityFactory.setProvider(window.web3.currentProvider);
-
     this.setState({
-      accounts: window.web3.eth.accounts
+      accounts: window.web3.eth.accounts,
+      identityFactoryInstance: new IdentityFactory(window.web3),
     });
 
-    identityFactory.deployed().then((instance) => {
-      instance.getOwnerIdentity.call({
-        from: this.state.accounts[0]
-      }).then((res, err) => {
-        if (err || !res.length) {
-          return;
-        }
+    this.state.identityFactoryInstance.getForOwner().then((res, err) => {
+      if (err || !res.length) {
+        return;
+      }
 
-        const username = res[0];
+      const username = res[0];
 
-        if (username !== '') {
-          this.setState({
-            username: username
-          });
-        }
-      })
-    });
+      if (username !== '') {
+        this.setState({
+          username: username
+        });
+      }
+    })
   }
 
   render() {

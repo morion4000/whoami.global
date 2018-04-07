@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Web3 from '../components/Web3.js';
+import Web3 from './Web3.js';
 
 
 class Footer extends Component {
