@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import getWeb3 from './../utils/getWeb3';
 
-const currentNetwork = 'Rinkeby';
+const _currentNetwork = 'Rinkeby';
 
 function getNetworkName(id) {
   let name;
@@ -40,7 +40,7 @@ function Web3Message(props) {
   const network = getNetworkName(props.network);
 
   if (metamask) {
-    if (network === currentNetwork) {
+    if (network === _currentNetwork) {
       return (
         <div>
           <span className="badge badge-success badge-indicator"></span>
@@ -100,3 +100,5 @@ class Web3 extends Component {
 }
 
 export default Web3;
+export const getNetworkName = getNetworkName;
+export const currentNetwork = _currentNetwork;

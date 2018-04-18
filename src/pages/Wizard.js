@@ -3,21 +3,20 @@ import contract from 'truffle-contract';
 
 import getWeb3 from './../utils/getWeb3';
 import AnnouncementFragment from '../containers/AnnouncementFragment.js';
-import Web3 from '../containers/Web3.js';
+import Web3, { getNetworkName, currentNetwork } from '../containers/Web3.js';
 import Metamask from '../containers/Metamask.js';
 import IdentityFactory from '../components/IdentityFactory.js';
 import DocumentFactory from '../components/DocumentFactory.js';
 
 function ProviderWarningMessage(props) {
-  const network = props.network;
+  const network = getNetworkName(props.network);
   const metamask = props.metamask;
 
-  // TODO: Import from web3 functions to handle networks
   if (metamask) {
-    if (network !== '4') {
+    if (network !== currentNetwork) {
       return (
         <div>
-          <AnnouncementFragment icon="icon-warning" text="Please point Metamask to Rinkeby testnet." linkText="Read More ›" linkAddress="/testnet" />
+          <AnnouncementFragment icon="icon-warning" text={"Please point Metamask to " + currentNetwork +" testnet."} linkText="Read More ›" linkAddress="/testnet" />
         </div>
       );
     } else {
