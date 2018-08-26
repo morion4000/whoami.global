@@ -1,0 +1,2 @@
+The main contract is deployed on Rinkeby at:
+0x4479949fbaa8a717ef9edc3ca6bedfb205821cf6 - https://rinkeby.etherscan.io/address/0x4479949fbaa8a717ef9edc3ca6bedfb205821cf6
