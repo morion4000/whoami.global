@@ -1,5 +1,5 @@
 # Who Am I
-Whoami is a service hosted on the Rinkeby Ethereum network that does identity management via smart contracts (Solidity).
+[Whoami](http://whoami.global) is a service hosted on the Rinkeby Ethereum network that does identity management via smart contracts (Solidity).
 
 ## Set up the project
 
