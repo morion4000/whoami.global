@@ -2,6 +2,7 @@ pragma solidity ^0.4.18;
 
 import "./Ownable.sol";
 
+/** @title Identity factory. */
 contract IdentityFactory is Ownable {
     address public owner;
 
@@ -27,6 +28,9 @@ contract IdentityFactory is Ownable {
         owner = msg.sender;
     }
 
+    /** @dev Creates the identity
+      * @param username The username to link the identity to.
+      */
     function createIdentity(string username) public {
         ownerIdentity[msg.sender].username = username;
         ownerIdentity[msg.sender].owner = msg.sender;
@@ -38,6 +42,11 @@ contract IdentityFactory is Ownable {
         NewIdentity(msg.sender, ownerIdentity[msg.sender].username, ownerIdentity[msg.sender].created);
     }
 
+    /** @dev Gets the identity of the sender
+      * @return username The username of the identity.
+      * @return created The identity created date.
+      * @return verifiedCountSum The identity verified counter.
+      */
     function getOwnerIdentity() public view returns (string, uint, uint) {
       return (
         ownerIdentity[msg.sender].username,

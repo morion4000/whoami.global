@@ -2,6 +2,7 @@ pragma solidity ^0.4.18;
 
 import "./Ownable.sol";
 
+/** @title Document factory. */
 contract DocumentFactory is Ownable {
     address public owner;
 
@@ -35,6 +36,10 @@ contract DocumentFactory is Ownable {
         owner = msg.sender;
     }
 
+    /** @dev Create a document
+      * @param key The key of the document.
+      * @param value The value of the document.
+      */
     function createDocument(string key, string value) payable public {
         Document memory document = Document(msg.sender, now, key, value);
 
@@ -44,6 +49,10 @@ contract DocumentFactory is Ownable {
         NewDocument(msg.sender, key, value);
     }
 
+    /** @dev Gets documents of the sent address
+      * @return _owner The address of the owner.
+      * @return result An array with the owner's documents.
+      */
     function getDocumentsByOwner(address _owner) view returns (uint[]) {
         uint[] memory result = new uint[](ownerDocumentCount[_owner]);
         uint counter = 0;
