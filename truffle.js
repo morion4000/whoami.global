@@ -3,6 +3,11 @@ var mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble s
 
 module.exports = {
   networks: {
+    test: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "5777",
+    },
     develop: {
       host: "127.0.0.1",
       port: 7545,

@@ -5,6 +5,7 @@
 
 Install NodeJS (version `v8` at least), Ganache, and then run:
 - `npm install`
+- `truffle test`
 - `truffle compile`
 - `truffle migrate --network=develop`
 - `npm run start`
