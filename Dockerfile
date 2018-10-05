@@ -1,6 +1,6 @@
 FROM node:8-alpine
 
-RUN apk update && apk add --no-cache git python python-dev py-pip
+RUN apk update && apk add --no-cache git make python python-dev py-pip
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
